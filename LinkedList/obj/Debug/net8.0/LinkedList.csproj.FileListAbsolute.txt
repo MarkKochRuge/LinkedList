@@ -12,3 +12,4 @@ C:\Users\markr\source\repos\LinkedList\LinkedList\obj\Debug\net8.0\refint\Linked
 C:\Users\markr\source\repos\LinkedList\LinkedList\obj\Debug\net8.0\LinkedList.pdb
 C:\Users\markr\source\repos\LinkedList\LinkedList\obj\Debug\net8.0\LinkedList.genruntimeconfig.cache
 C:\Users\markr\source\repos\LinkedList\LinkedList\obj\Debug\net8.0\ref\LinkedList.dll
+C:\Users\markr\Source\Repos\LinkedList\LinkedList\obj\Debug\net8.0\LinkedList.sourcelink.json

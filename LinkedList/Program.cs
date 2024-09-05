@@ -7,56 +7,59 @@ public class LLdemo
 {
     public static void Main()
     {
-        LL s = new LL();
+        LinkedList s = new LinkedList();
         s.add(3);
         s.add(7);
         s.add(5);
         s.add(6);
         s.printAll();
         s.PrintUlige();
+
         int sum = s.Beregnsum();
         Console.WriteLine(sum);
-        s.IndSetEfter(2, 200);
         Console.WriteLine();
+
+        s.IndSetEfter(2, 200);
         s.printAll();
         Console.WriteLine();
-        s.SletElement(3);
+
+        s.SletElement(2) ;
         s.printAll();
     }
 }
 
-class LL
+class LinkedList
 {
-    private L f;
+    private Node Head;
 
-    public LL()
+    public LinkedList()
     {
-        f = null;
+        Head = null;
     }
 
     public void add(int n)
     {
-        L node = new L();
+        Node node = new Node();
         node.data = n;
-        node.next = f;
-        f = node;
+        node.next = Head;
+        Head = node;
     }
 
     public void printAll()
     {
         Console.WriteLine("Udprinter alt data:");
-        L tmp = f;
-        while (tmp != null)
+        Node temp = Head;
+        while (temp != null)
         {
-            Console.WriteLine($"tmp.data = {tmp.data}");
-            tmp = tmp.next;
+            Console.WriteLine($"tmp.data = {temp.data}");
+            temp = temp.next;
         }
     }
 
     public void PrintUlige()
     {
         Console.WriteLine("\nUdprinter alle ulige tal:");
-        L temp = f;
+        Node temp = Head;
         while (temp != null)
         {
             if (temp.data % 2 != 0)
@@ -70,7 +73,7 @@ class LL
     public int Beregnsum()
     {
         Console.WriteLine("\nBeregner summen af alt data:");
-        L temp = f;
+        Node temp = Head;
         int sum = 0;
         while (temp != null)
         {
@@ -82,17 +85,17 @@ class LL
 
     public void IndSetEfter(int pos, int element)
     {
-        L nyNode = new L();
+        Node nyNode = new Node();
         nyNode.data = element;
 
         if (pos == 0)
         {
-            nyNode.next = f;
-            f = nyNode;
+            nyNode.next = Head;
+            Head = nyNode;
         }
         else
         {
-            L temp = f; 
+            Node temp = Head; 
             int count = 0;
 
             while (temp != null && count < pos - 1)
@@ -115,12 +118,38 @@ class LL
 
     public void SletElement(int pos)
     {
+        Node temp = Head;
+        // If the position is 0, delete the head node
+        if (pos == 0)
+        {
+            Head = temp.next; // Change head to the next node
+        }
+
+        // Find the previous node of the node to be deleted
+        for (int i = 0; temp != null && i < pos - 1; i++)
+        {
+            temp = temp.next;
+        }
+
+        // If the position is greater than the number of nodes
+        if (temp == null || temp.next == null)
+        {
+            Console.WriteLine($"Position {pos} er ude af rækkevidde.");
+        }
+
+        // Node temp.next is the node to be deleted
+        Node next = temp.next.next;
+
+        // Unlink the node from the linked list
+        temp.next = next;
+
+
 
     }
 }
 
-public class L
+public class Node
 {
     public int data;
-    public L next;
+    public Node next;
 }
