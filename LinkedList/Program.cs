@@ -76,7 +76,28 @@ public class LLdemo
         // Få en ny linkedliste udfra elementer som hører under et bestemt interval
         LinkedList linkedList = s.Getinterval(4, 9);
         linkedList.printAll();
+        Console.WriteLine();
 
+        // Få en ny linkedlist som modtager to LL lister og sætter dem sammen efter hinanden
+        // først opretter jeg lige to linkedlist med hver deres datasæt
+        LinkedList s1 = new LinkedList();
+        LinkedList s2 = new LinkedList();
+
+        // Så indsætter jeg elementer i min første liste
+        s1.add(1);
+        s1.add(2);
+        s1.add(3);
+        s1.add(4);
+
+        // Så indsætter jeg elementer i min anden liste
+        s2.add(5);
+        s2.add(6);
+        s2.add(7);
+        s2.add(8);
+        
+        // Nu kalder jeg ConCat metoden for at kombinere dem sammen til en stor linkedliste
+        LinkedList s3 = s.ConCat(s1, s2);
+        s3.printAll();
     }
 }
 
@@ -277,6 +298,29 @@ class LinkedList
             temp = temp.next;
         }
         return l; // returne den nye liste 
+    }
+
+    // Tager to linkedlister om kombinere dem sammen til en liste
+    public LinkedList ConCat(LinkedList s1, LinkedList s2)
+    {
+        LinkedList s3 = new LinkedList(); // Opretter listen som skal returneres 
+
+        Node temp1 = s1.Head; // Gemmer den første listes første node i en temp1 så der kan vælges hvilken liste der skal itereres igennem
+        Node temp2 = s2.Head; // Gemmer den anden listes første node i temp2
+
+        while (temp1 != null)
+        {
+            s3.add(temp1.data); // tilføjer elementerne fra første liste til den returnerende liste 
+            temp1 = temp1.next;
+        }
+
+        while (temp2 != null)
+        {
+            s3.add(temp2.data); // tilføjer elementerne fra den anden liste til den returnerende liste 
+            temp2 = temp2.next;
+        }
+
+        return s3;
     }
 
     public class Node
